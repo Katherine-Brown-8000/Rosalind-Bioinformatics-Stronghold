@@ -1,0 +1,7 @@
+# Transcription
+DNA_sample = "ACGT"
+
+def transcription(seq):
+    return seq.replace("T", "U")
+
+print(transcription(DNA_sample))
