@@ -11,7 +11,6 @@ def fibonacci_matrix_exponentiation(months, offsprings):
 print(fibonacci_matrix_exponentiation(28, 2)) 
 
 # Method from reblescience
-
 def Fibonacci_Loop_Pythonic(months, offsprings):
     parent, child = 1, 1
     for itr in range(months -1):
