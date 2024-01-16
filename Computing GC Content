@@ -1,0 +1,16 @@
+# GC content
+DNA_sample = "ATGC"
+
+def calculate_gc_content(DNA_sample):
+    gc_count = 0
+    total_bases = len(DNA_sample)
+
+    for base in DNA_sample:
+        if base in "GCgc":
+            gc_count += 1
+
+    gc_count = (gc_count/total_bases) * 100
+    return gc_count
+
+gc_content = calculate_gc_content(DNA_sample)
+print(f"{gc_content:.2f}%")
