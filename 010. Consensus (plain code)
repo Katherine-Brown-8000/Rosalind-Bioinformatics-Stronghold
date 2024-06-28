@@ -1,0 +1,64 @@
+from collections import Counter
+
+
+def read_fasta(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read().splitlines()
+
+    DNA = {}
+    DNA_id = None
+    DNA_data = []
+
+    for line in content:
+        if line.startswith(">"):
+            if DNA_id is not None:
+                DNA[DNA_id] = ''.join(DNA_data)
+            DNA_id = line[1:].strip()
+            DNA_data = []
+        else:
+            DNA_data.append(line.strip())
+
+    if DNA_id is not None:
+        DNA[DNA_id] = ''.join(DNA_data)
+
+    return DNA
+
+
+def cal_consensus(DNA):
+    sample_length = len(next(iter(DNA.values())))
+    valid_samples = {k: v for k, v in DNA.items() if len(v) == sample_length}
+
+    if len(valid_samples) != len(DNA):
+        print("Warning: Some samples were ignored due to length mismatch.")
+
+    consensus = []
+    profile = {'A': [], 'C': [], 'G': [], 'T': []}
+
+    for i in range(sample_length):
+        column = [nuc[i] for nuc in valid_samples.values()]
+        counter = Counter(column)
+        consensus.append(counter.most_common(1)[0][0])
+
+        for nucleotide in 'ACGT':
+            profile[nucleotide].append(counter[nucleotide])
+
+    return ''.join(consensus), profile
+
+
+def print_profile(profile):
+    for nucleotide in 'ACGT':
+        print(f"{nucleotide}: {' '.join(map(str, profile[nucleotide]))}")
+
+
+# File path to your FASTA file
+file_path = 'C:\\Users\\your_username\\Desktop\\rosalind_cons_2.txt'
+
+# Read the DNA from the FASTA file
+DNA = read_fasta(file_path)
+
+# Calculate the consensus and profile matrix
+consensus, profile = cal_consensus(DNA)
+
+# Print the results
+print("Consensus:", consensus)
+print_profile(profile)
