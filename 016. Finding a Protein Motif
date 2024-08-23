@@ -1,3 +1,7 @@
+# There seems to be an error with some of the files being called because uniprot changes their names.
+# Remove Names from the files in place of numbers
+# For that reason I was unable to complete this problem, but left the code here for later attempts
+
 import requests
 import re
 
