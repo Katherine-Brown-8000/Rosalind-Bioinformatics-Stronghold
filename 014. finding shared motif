@@ -41,7 +41,7 @@ def longest_common_substring(dna_strings):
                     longest_substrings.add(substring)
     return list(longest_substrings)
 
-file_path = r'C:/Users/scien/Desktop/rosalind_lcsmT.txt'
+file_path = r'C:/Users/username/Desktop/rosalind_lcsmT.txt'
 
 data = read_fasta_file(file_path)
 dna_strings = parse_fasta(data)
