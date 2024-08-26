@@ -22,7 +22,6 @@ def read_fasta(file_path):
 
     return DNA
 
-
 def cal_consensus(DNA):
     sample_length = len(next(iter(DNA.values())))
     valid_samples = {k: v for k, v in DNA.items() if len(v) == sample_length}
@@ -42,7 +41,6 @@ def cal_consensus(DNA):
             profile[nucleotide].append(counter[nucleotide])
 
     return ''.join(consensus), profile
-
 
 def print_profile(profile):
     for nucleotide in 'ACGT':
