@@ -25,7 +25,7 @@ def overlap_graph(sequence, k):
                 adjacency_list.append(f"{label1} {label2}")
     return adjacency_list
 
-file_path = "C:/Users/your username/Desktop/rosalind_grph2.txt"
+file_path = r"C:/Users/username/Desktop/rosalind_grph.txt"
 
 fasta_data = read_fasta_file(file_path)
 sequences = parse_fasta(fasta_data)
@@ -33,3 +33,4 @@ adjacency_list = overlap_graph(sequences, 3)
 
 for edge in adjacency_list:
     print(edge)
+
