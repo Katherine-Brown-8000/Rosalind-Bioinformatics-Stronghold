@@ -1,6 +1,5 @@
 from collections import Counter
 
-
 def read_fasta(file_path):
     with open(file_path, 'r') as file:
         content = file.read().splitlines()
@@ -51,7 +50,7 @@ def print_profile(profile):
 
 
 # File path to your FASTA file
-file_path = 'C:\\Users\\your_username\\Desktop\\rosalind_cons_2.txt'
+file_path = r'C:/Users/username/Desktop/rosalind_cons.txt'
 
 # Read the DNA from the FASTA file
 DNA = read_fasta(file_path)
