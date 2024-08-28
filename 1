@@ -27,7 +27,7 @@ def find_orfs(dna_sequence):
 
     return list(orfs)
 
-record = SeqIO.read(r"C:\Users\scien\Desktop\rosalind_orf2.txt", "fasta")
+record = SeqIO.read(r"C:\Users\username\Desktop\rosalind_orf.txt", "fasta")
 dna_sequence = str(record.seq)
 
 protein_strings = find_orfs(dna_sequence)
