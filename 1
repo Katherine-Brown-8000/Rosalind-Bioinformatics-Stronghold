@@ -1,0 +1,36 @@
+from Bio.Seq import Seq
+from Bio import SeqIO
+
+def find_orfs(dna_sequence):
+    start_codon = "ATG"
+    stop_codons = {"TAA", "TAG", "TGA"}
+
+    def extract_orfs(seq):
+        orfs = []
+        for i in range(len(seq) - 2):
+            if seq[i:i + 3] == start_codon:
+                for j in  range(i + 3, len(seq) - 2, 3):
+                    if seq[j:j + 3] in stop_codons:
+                        orf_seq = seq[i:j + 3]
+                        orfs.append(str(Seq(orf_seq).translate(to_stop=True)))
+                        break
+        return orfs
+
+    reverse_complement = str(Seq(dna_sequence).reverse_complement())
+
+    orfs = set(extract_orfs(dna_sequence))
+    orfs.update(extract_orfs(dna_sequence[1:]))
+    orfs.update(extract_orfs(dna_sequence[2:]))
+    orfs.update(extract_orfs(reverse_complement))
+    orfs.update(extract_orfs(reverse_complement[1:]))
+    orfs.update(extract_orfs(reverse_complement[2:]))
+
+    return list(orfs)
+
+record = SeqIO.read(r"C:\Users\scien\Desktop\rosalind_orf2.txt", "fasta")
+dna_sequence = str(record.seq)
+
+protein_strings = find_orfs(dna_sequence)
+
+for protein in protein_strings:
+    print(protein)
