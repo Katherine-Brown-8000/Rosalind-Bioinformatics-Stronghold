@@ -21,7 +21,7 @@ def read_file(file_path):
         content = file.read().strip()
     return content
 
-file_path = r"C:\Users\scien\Desktop\rosalind17.txt"
+file_path = r"C:\Users\username\Desktop\rosalind17.txt"
 
 protein_string = read_file(file_path)
 print(infer_mrna_frm_protein(protein_string))
